@@ -1,7 +1,8 @@
 ---
-title: Contributing
-layout: default
-nav_order: 4
+title: "Contributing"
+layout: single
+permalink: /CONTRIBUTING/
+toc: true
 ---
 
 # Contributing to From CV to Site

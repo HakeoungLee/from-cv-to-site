@@ -1,8 +1,12 @@
 ---
 title: "4. Building the Pages"
-layout: default
-parent: Tutorials
-nav_order: 4
+layout: single
+permalink: /tutorials/04-building-pages/
+sidebar:
+  nav: "tutorials"
+toc: true
+toc_label: "On this page"
+toc_sticky: true
 ---
 
 # 4. Building the Pages
@@ -32,7 +36,7 @@ pnpm install
 pnpm dev
 ```
 
-**Option B: build from scratch.** Use the step-by-step instructions below to understand each file. Use this option if you already know Next.js and want full control, or if you want to understand what the starter contains before using it.
+**Option B: build from scratch.** Use the step-by-step instructions below to understand each file. This option is mostly instructive; Tutorials 5 through 7 assume the starter's structure and scripts, so from-scratch builders should still use the starter as the reference for parser scripts, data types, and file paths.
 
 The rest of this tutorial walks through Option B. If you chose Option A, skim to verify the project layout matches and then move to Tutorial 5.
 
@@ -222,23 +226,34 @@ A minimal header with site navigation:
 // src/components/Header.tsx
 import Link from "next/link";
 
+const NAV = [
+  { href: "/research", label: "Research" },
+  { href: "/projects", label: "Projects" },
+  { href: "/people", label: "People" },
+  { href: "/teaching", label: "Teaching" },
+  { href: "/news", label: "News" },
+  { href: "/contact", label: "Contact" },
+];
+
 export default function Header() {
   return (
     <header className="border-b border-neutral-200">
-      <nav className="mx-auto max-w-3xl px-6 py-4 flex justify-between">
-        <Link href="/" className="font-serif">Your Name</Link>
-        <ul className="flex gap-6 text-sm">
-          <li><Link href="/research">Research</Link></li>
-          <li><Link href="/projects">Projects</Link></li>
-          <li><Link href="/teaching">Teaching</Link></li>
-          <li><Link href="/news">News</Link></li>
-          <li><Link href="/contact">Contact</Link></li>
+      <nav className="mx-auto max-w-3xl px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <Link href="/" className="prose-serif text-lg font-semibold">Your Name</Link>
+        <ul className="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+          {NAV.map((item) => (
+            <li key={item.href}>
+              <Link href={item.href}>{item.label}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
   );
 }
 ```
+
+The `flex flex-col sm:flex-row` pattern stacks navigation items vertically on narrow screens and shifts to a horizontal row at the `sm` breakpoint (640 pixels). Remove `/people` from `NAV` if the site is for a solo researcher.
 
 ## Footer
 
@@ -275,6 +290,50 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ```
 
 Reference `var(--font-serif)` and `var(--font-sans)` in your Tailwind configuration or inline classes.
+
+### Swapping fonts
+
+To use different fonts, replace the imports from `next/font/google`. Any font available on Google Fonts works:
+
+```tsx
+// Editorial, serif-led combination
+import { Lora, Work_Sans } from "next/font/google";
+
+// Mono-led combination
+import { JetBrains_Mono, IBM_Plex_Sans } from "next/font/google";
+```
+
+Update the variable names and `className` on `<html>` accordingly, and revise the CSS variables in `src/app/globals.css` to match.
+
+## Adding images
+
+Images belong in `public/`. Next.js serves anything there at the site root.
+
+```
+public/
+├── figures/
+│   └── model-diagram.png
+├── people/
+│   ├── you.jpg
+│   └── student.jpg
+└── favicon.ico
+```
+
+Use the `Image` component from `next/image` for photos and figures above the fold. It handles responsive sizing, lazy loading, and modern formats (WebP, AVIF) automatically:
+
+```tsx
+import Image from "next/image";
+
+<Image
+  src="/figures/model-diagram.png"
+  alt="Diagram of the proposed model"
+  width={800}
+  height={600}
+  className="rounded-md"
+/>
+```
+
+For small decorative images or icons where those optimizations are unnecessary, a plain `<img>` is acceptable. Compress images before committing them with [Squoosh](https://squoosh.app) or `sharp`; aim for under 200 KB per image.
 
 ## Responsive considerations
 

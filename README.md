@@ -1,8 +1,10 @@
 ---
-title: From CV to Site
-layout: default
-nav_order: 1
+title: "From CV to Site"
+layout: single
 permalink: /
+toc: true
+toc_label: "On this page"
+toc_sticky: true
 ---
 
 # From CV to Site

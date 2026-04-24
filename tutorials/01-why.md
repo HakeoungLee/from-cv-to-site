@@ -1,8 +1,12 @@
 ---
 title: "1. Why Build Your Own Site?"
-layout: default
-parent: Tutorials
-nav_order: 1
+layout: single
+permalink: /tutorials/01-why/
+sidebar:
+  nav: "tutorials"
+toc: true
+toc_label: "On this page"
+toc_sticky: true
 ---
 
 # 1. Why Build Your Own Site?

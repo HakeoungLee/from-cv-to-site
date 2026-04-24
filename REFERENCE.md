@@ -1,7 +1,10 @@
 ---
-title: Reference
-layout: default
-nav_order: 3
+title: "Reference"
+layout: single
+permalink: /REFERENCE/
+toc: true
+toc_label: "On this page"
+toc_sticky: true
 ---
 
 # Reference

@@ -45,3 +45,17 @@ export type NewsItem = {
   summary?: string;
   link?: string;
 };
+
+export type Person = {
+  name: string;
+  role: string;
+  startYear?: number;
+  endYear?: number | null;
+  bio?: string;
+  photo?: string;
+  links?: {
+    scholar?: string;
+    github?: string;
+    website?: string;
+  };
+};

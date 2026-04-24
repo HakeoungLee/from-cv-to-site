@@ -1,8 +1,12 @@
 ---
 title: "6. Deploying"
-layout: default
-parent: Tutorials
-nav_order: 6
+layout: single
+permalink: /tutorials/06-deploying/
+sidebar:
+  nav: "tutorials"
+toc: true
+toc_label: "On this page"
+toc_sticky: true
 ---
 
 # 6. Deploying

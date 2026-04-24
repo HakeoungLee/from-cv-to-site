@@ -1,8 +1,10 @@
 ---
-title: Tutorials
-layout: default
-nav_order: 2
-has_children: true
+title: "Tutorials"
+layout: single
+permalink: /tutorials/
+sidebar:
+  nav: "tutorials"
+toc: false
 ---
 
 # Tutorials

@@ -1,0 +1,31 @@
+main:
+  - title: "Home"
+    url: /
+  - title: "Tutorials"
+    url: /tutorials/
+  - title: "Reference"
+    url: /REFERENCE/
+  - title: "Contributing"
+    url: /CONTRIBUTING/
+  - title: "Starter"
+    url: https://github.com/HakeoungLee/from-cv-to-site/tree/default/starter
+  - title: "Live example"
+    url: https://mltilab.com
+
+tutorials:
+  - title: "Tutorials"
+    children:
+      - title: "1. Why Build Your Own Site?"
+        url: /tutorials/01-why/
+      - title: "2. Designing with AI (Claude)"
+        url: /tutorials/02-designing-with-ai/
+      - title: "3. Tech Setup"
+        url: /tutorials/03-tech-setup/
+      - title: "4. Building the Pages"
+        url: /tutorials/04-building-pages/
+      - title: "5. CV Automation"
+        url: /tutorials/05-cv-automation/
+      - title: "6. Deploying"
+        url: /tutorials/06-deploying/
+      - title: "7. Maintaining & Extending"
+        url: /tutorials/07-maintaining/

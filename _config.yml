@@ -1,22 +1,39 @@
 title: From CV to Site
-description: Open-source guide and starter for academics building a personal website with AI.
+subtitle: An open-source guide and starter for academics building a personal or lab website with AI.
+description: An open-source guide and starter for academics building a personal or lab website with AI.
 url: https://hakeounglee.github.io
 baseurl: /from-cv-to-site
+repository: HakeoungLee/from-cv-to-site
 
-remote_theme: just-the-docs/just-the-docs
+remote_theme: "mmistakes/minimal-mistakes@4.26.2"
+minimal_mistakes_skin: default
 
-color_scheme: light
-search_enabled: true
-heading_anchors: true
+masthead_title: "From CV to Site"
 
-aux_links:
-  "GitHub":
-    - "https://github.com/HakeoungLee/from-cv-to-site"
+words_per_minute: 220
+search: true
+search_full_content: true
 
-nav_external_links:
-  - title: Live example
-    url: https://mltilab.com
-    hide_icon: false
+author:
+  name: "Hakeoung Hannah Lee"
+  bio: "Assistant Professor, University of Virginia."
+  location: "Charlottesville, VA"
+  links:
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://mltilab.com"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/HakeoungLee"
+
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/HakeoungLee/from-cv-to-site"
+    - label: "Live example"
+      icon: "fas fa-fw fa-link"
+      url: "https://mltilab.com"
 
 exclude:
   - starter/
@@ -24,14 +41,44 @@ exclude:
   - vendor/
   - Gemfile
   - Gemfile.lock
+  - package.json
+  - package-lock.json
   - "*.docx"
 
 plugins:
   - jekyll-remote-theme
+  - jekyll-include-cache
   - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-relative-links
+  - jekyll-feed
+
+relative_links:
+  enabled: true
+  collections: true
 
 defaults:
   - scope:
       path: ""
     values:
-      layout: default
+      layout: single
+      author_profile: true
+      read_time: true
+      toc: true
+      toc_sticky: true
+  - scope:
+      path: "tutorials"
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      toc: true
+      toc_sticky: true
+      toc_label: "On this page"
+
+permalink: pretty
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge

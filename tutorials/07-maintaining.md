@@ -1,8 +1,12 @@
 ---
 title: "7. Maintaining & Extending"
-layout: default
-parent: Tutorials
-nav_order: 7
+layout: single
+permalink: /tutorials/07-maintaining/
+sidebar:
+  nav: "tutorials"
+toc: true
+toc_label: "On this page"
+toc_sticky: true
 ---
 
 # 7. Maintaining & Extending
@@ -164,12 +168,77 @@ The parser in Tutorial 5 handles APA 7 journal articles. To support additional f
 3. Validate parsed entries with a Zod schema
 4. Register the new section in `scripts/parse-cv.ts`
 
-Examples of formats that require additions:
+### Example: adding a preprints section
 
-- Book chapters (editors, publisher, chapter pages)
-- Conference proceedings (track, DOI variations)
-- Preprints (arXiv IDs, OSF identifiers)
-- Non-English titles (alternate character sets)
+Preprints (arXiv, OSF, SSRN) do not include a journal and often use a different identifier pattern. Adding support requires three short changes.
+
+**1. New parser at `scripts/parsers/preprints.ts`:**
+
+```ts
+import { z } from "zod";
+import { htmlToLines, stripTags } from "./shared";
+
+const PreprintSchema = z.object({
+  authors: z.array(z.string()).nonempty(),
+  year: z.number().int(),
+  title: z.string().min(1),
+  repository: z.enum(["arXiv", "OSF", "SSRN", "bioRxiv", "other"]),
+  identifier: z.string().min(1),
+  url: z.string().url().optional(),
+});
+
+export type Preprint = z.infer<typeof PreprintSchema>;
+
+const ENTRY_RE =
+  /^(?<authors>.+?)\s*\((?<year>\d{4})\)\.\s*(?<title>.+?)\.\s*(?<repo>arXiv|OSF|SSRN|bioRxiv):\s*(?<id>[\w./-]+)\.?\s*(?<url>https?:\/\/\S+)?\s*$/i;
+
+export function parsePreprints(html: string) {
+  const items: Preprint[] = [];
+  const unparsed: string[] = [];
+  for (const line of htmlToLines(html)) {
+    const m = ENTRY_RE.exec(stripTags(line));
+    if (!m?.groups) { unparsed.push(stripTags(line)); continue; }
+    const g = m.groups;
+    const parsed = {
+      authors: g.authors.split(/,\s*&\s+|\s+&\s+/).map((a) => a.trim()),
+      year: Number(g.year),
+      title: g.title.trim(),
+      repository: g.repo as Preprint["repository"],
+      identifier: g.id,
+      url: g.url,
+    };
+    const res = PreprintSchema.safeParse(parsed);
+    if (res.success) items.push(res.data); else unparsed.push(stripTags(line));
+  }
+  return { items, unparsed };
+}
+```
+
+**2. Register the section in `scripts/parse-cv.ts`:**
+
+```ts
+import { parsePreprints } from "./parsers/preprints";
+
+// Add to the configs array:
+{
+  keys: ["preprints", "workingpapers"],
+  parse: parsePreprints,
+  outFile: "preprints.ts",
+  exportName: "preprints",
+  typeName: "Preprint",
+},
+```
+
+**3. Add the type to `src/data/types.ts`** (use the same `Preprint` type, exported from the types module), and create `src/data/preprints.ts` as a generated file stub following the pattern of the others.
+
+After these changes, a CV section headed `Preprints` with entries like `Doe, J., & Smith, A. (2025). Title. arXiv: 2501.12345. https://arxiv.org/abs/2501.12345.` parses correctly.
+
+### Other formats worth adding
+
+- **Book chapters**: parse editors, publisher, and chapter page range
+- **Conference proceedings**: distinguish from journal articles (often no volume or DOI)
+- **Software / datasets**: capture version, repository URL, and license
+- **Non-English titles**: no code change required, but verify `lang="en"` on the root layout does not interfere with screen readers for those sections
 
 ## Working with Claude Code for maintenance
 

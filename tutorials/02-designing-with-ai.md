@@ -1,8 +1,12 @@
 ---
 title: "2. Designing with AI (Claude)"
-layout: default
-parent: Tutorials
-nav_order: 2
+layout: single
+permalink: /tutorials/02-designing-with-ai/
+sidebar:
+  nav: "tutorials"
+toc: true
+toc_label: "On this page"
+toc_sticky: true
 ---
 
 # 2. Designing with AI (Claude)

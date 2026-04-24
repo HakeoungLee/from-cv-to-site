@@ -1,8 +1,12 @@
 ---
 title: "3. Tech Setup"
-layout: default
-parent: Tutorials
-nav_order: 3
+layout: single
+permalink: /tutorials/03-tech-setup/
+sidebar:
+  nav: "tutorials"
+toc: true
+toc_label: "On this page"
+toc_sticky: true
 ---
 
 # 3. Tech Setup
