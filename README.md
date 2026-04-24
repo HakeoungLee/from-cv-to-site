@@ -39,7 +39,7 @@ Coming soon. See **Tutorials** below as they're published.
 The tutorial series is being written progressively:
 
 1. [**Why Build Your Own Site?**](tutorials/01-why.md) — what you get vs. a faculty page *(published)*
-2. **Designing with AI (Claude)** — turning rough ideas into a real layout *(coming soon)*
+2. [**Designing with AI (Claude)**](tutorials/02-designing-with-ai.md) — turning rough ideas into a real layout
 3. **Tech Setup** — GitHub, Next.js, and Claude Code, explained gently
 4. **Building the Pages** — home, research, teaching, CV, contact
 5. **CV Automation** — the signature feature: one Word doc, always up to date
