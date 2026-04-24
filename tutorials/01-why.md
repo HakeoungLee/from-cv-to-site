@@ -2,73 +2,128 @@
 
 > Part 1 of the [From CV to Site](../README.md) tutorial series.
 
-Before we talk about domains or code or any of the fun stuff, let's start with a question worth sitting with for a minute:
+## What this guide produces
 
-**Do you actually need your own website?**
+By the end of this series, you will have a personal academic website deployed at a custom domain, built with Next.js, hosted on Vercel, and maintained through a Word-based CV workflow. The site you will produce is equivalent in structure to [MLTI Lab](https://mltilab.com).
 
-Your institution almost certainly already gives you a profile page. It has your headshot, a biography paragraph that HR probably rewrote, and a publications list that was accurate the last time someone updated the CMS in 2021. It's fine. It works. You could stop reading here.
+## Who should follow this guide
 
-But if you're still reading, you probably already suspect what I think: that "fine" is not quite the same as "yours."
+This guide assumes you are one of the following:
 
-## What your faculty page can't do
+- Faculty, post-docs, Ph.D. students, or educators who want a personal academic website
+- Readers with no prior web development experience
+- Readers comfortable editing documents, copying commands into a terminal, and making design decisions
 
-Institutional pages are built for the institution, not for you. That's not a complaint — it's just their job. And it comes with some consequences that are easy to miss until you're a few years into your career:
+No programming background is assumed. You will install tools and run commands as instructed.
 
-- **They flatten you.** Every faculty member on a department site tends to look roughly the same. Same template, same photo frame, same bullet-point sections. Your specific research voice — the thing that makes a prospective student email you instead of someone else — gets compressed into a paragraph.
-- **They're slow to update.** Want to add a paper that was accepted last week? Open a ticket. Want to reorder your projects so the one you're most excited about is on top? Open a ticket. Want to change your bio photo because you haven't had that haircut in three years? You know the drill.
-- **They vanish.** When you move institutions, your page moves with the institution, not with you. Links die. Citations break. Search engines that used to find your work now find a 404.
-- **They don't tell a story.** Your work has a through-line — a question you're actually chasing. A faculty page usually can't show that.
+## What institutional profile pages offer
 
-Your own site fixes all four. It's slower to build the first time, but it compounds: every hour you invest buys you years of faster updates and a platform that travels with you.
+Most universities provide a faculty profile page at a URL owned by the institution. These pages typically include:
 
-## What a good academic site can do
+- A standardized layout shared across the department
+- A short biography, managed through a CMS or HR system
+- A publications list, often updated manually on request
+- Institutional contact information
+- Hosting and maintenance handled by the institution
 
-I'll be specific, because "personal branding" is a phrase I don't love for academics. Here's what my own site ([MLTI Lab](https://mltilab.com)) actually does for me on an average week:
+## What a personal site adds
 
-- A prospective Ph.D. student reads the homepage, understands what my lab studies in about thirty seconds, and emails me with a well-targeted question rather than a generic one.
-- A journal editor who's looking for a reviewer can see my recent publications *and* read one of my talks before deciding.
-- A conference organizer can grab my bio, headshot, and affiliation in one click without emailing me.
-- A collaborator from across the world can see what I'm working on *right now*, not what I was working on three years ago.
-- I can point students in my class to a specific teaching page instead of uploading the same PDF to the LMS every semester.
+A personal academic site is hosted at a domain you control and includes content you define. Common additions over an institutional profile:
 
-None of that is dramatic. But together, it changes the shape of your week. Fewer emails that ask you things your site could have answered. More emails that are actually interesting.
+- Arbitrary page structure (research, teaching, projects, news, contact, etc.)
+- Full control over typography, layout, and visual identity
+- Fast, self-service updates without opening a ticket
+- Portable URLs that do not break when you change institutions
+- Customizable publication groupings (by theme, by method, by collaborator)
+- Integration of external content (talks, media coverage, teaching materials)
+- SEO and citation metadata you control
 
-## "But I can't code."
+## Requirements
 
-Good. Neither could I, really, when I started. I've written a lot of R and Python for research, but front-end web development — the CSS, the layout, the responsive design, all of it — was genuinely new to me.
+**Time**
 
-Here's what changed in the last two years: AI tools got good enough that you can describe what you want in plain English, and they'll write most of the code for you. You still have to *decide* things (what should the homepage say? how do I want publications to be grouped?), but decisions are the fun part. Decisions are the part where your taste shows up.
+- Initial build: several evenings or a long weekend, depending on familiarity with the tools
+- Ongoing maintenance: editing a Word document and running an update script when your CV changes
 
-This guide assumes you've never written web code, and it walks through the process the way I actually did it — mistakes, detours, and all. If you can write an email, you can do this.
+**Cost**
 
-## "But I don't have time."
+- Hosting: free on Vercel's Hobby tier for personal academic sites
+- Domain: approximately 10 to 20 USD per year through a domain registrar
+- Tooling: free (Node.js, Git, GitHub, Claude.ai free tier or paid plan)
 
-Fair. Nobody has time. Here's the honest accounting from my own build:
+**Technical prerequisites**
 
-| Phase | Rough time |
-|---|---|
-| Design decisions (what the site should be) | ~3 hours, spread over a week |
-| Initial build with Claude | ~8 hours, spread over two weekends |
-| CV automation setup | ~2 hours |
-| Deployment + custom domain | ~1 hour |
-| **Total first build** | **~14 hours** |
-| Weekly maintenance after launch | **~10 minutes** |
+- macOS, Linux, or Windows with WSL
+- A working text editor (VS Code is recommended but optional)
+- A GitHub account
+- Access to [claude.ai](https://claude.ai) and optionally Claude Code
 
-Fourteen hours is a long weekend, or a few evenings during a slower week. After that, keeping the site current is a matter of editing your CV document — which you were going to update anyway.
+## Tradeoffs to consider
 
-## What this tutorial series will cover
+**Benefits**
 
-The rest of the tutorials will get increasingly practical. By the end, you'll have:
+- Full content and design control
+- Portable across career moves
+- Lower marginal cost per update after initial setup
+- Version history and rollback through Git
+- Deployment previews before content goes public
 
-- A live site at your own domain
-- Publications that update automatically from your Word CV
-- A workflow for adding new projects, talks, and teaching in minutes
-- A repo you can fork next time you move institutions — because you will
+**Costs**
 
-But first, the next tutorial is about **design** — because a site that loads fast but says nothing isn't worth the fourteen hours. We'll talk about what academic sites should and shouldn't do, and how to work with Claude to turn vague taste into specific layout.
+- Initial setup time
+- Responsibility for your own maintenance, including dependency updates
+- Upfront design decisions that an institutional template would otherwise make for you
+- Minor ongoing cost for the domain
+
+If you only need a static contact page and a publications list, an institutional profile may be sufficient. If you want any of the additions listed above, this guide is for you.
+
+## Comparison with alternative approaches
+
+The following table summarizes how the stack used in this series compares to other common options.
+
+| Approach | Setup effort | Monthly cost | Control | Portability |
+|---|---|---|---|---|
+| Institutional profile | None | None | Low | None (tied to institution) |
+| Squarespace or Wix | Low | 12 to 25 USD | Medium | Partial (content export only) |
+| WordPress (self-hosted) | Medium | 5 to 10 USD | High | High |
+| Hugo or Jekyll (static) | Medium | 0 to 2 USD | High | High |
+| **Next.js + Vercel (this guide)** | Medium | 0 to 2 USD | High | High |
+
+The stack used here favors direct authoring of React components, fast deployment, and automated data generation from a Word CV. Other stacks are valid choices; this guide simply documents one that is known to work end to end.
+
+## Stack choice rationale
+
+This series uses the following stack:
+
+| Component | Chosen technology | Reason |
+|---|---|---|
+| Framework | Next.js (App Router) | Mature static generation, wide community support, good Vercel integration |
+| Hosting | Vercel | Free tier adequate for academic traffic, zero-config Next.js builds |
+| Styling | Tailwind CSS | Utility-first classes work well with AI-assisted generation |
+| Source data | Word CV | Most academics already maintain one |
+| AI assistance | Claude (chat + Claude Code) | Strong code generation and editing, file-aware in Claude Code |
+
+Substituting any component is possible. The tutorials assume the combination above.
+
+## What this guide does not cover
+
+The following are out of scope:
+
+- Content management systems (WordPress, Squarespace, Webflow, etc.)
+- Static site generators other than Next.js (Hugo, Jekyll, Astro, etc.)
+- Custom CMS or backend development
+- Search engine optimization beyond defaults provided by Next.js and Vercel
+- Analytics configuration
+- Accessibility audits beyond defaults
+
+Each of these is a reasonable path, but the series focuses on one specific stack: Next.js, Vercel, Claude, and a Word-based CV workflow.
+
+## Next tutorial
+
+[Tutorial 2: Designing with AI (Claude)](02-designing-with-ai.md)
 
 ---
 
-**Next**: 2. Designing with AI (Claude) — *coming soon*
+*Questions or feedback: open an issue on the [repository](https://github.com/HakeoungLee/from-cv-to-site) or email [hannahlee@virginia.edu](mailto:hannahlee@virginia.edu).*
 
 [Back to README](../README.md)

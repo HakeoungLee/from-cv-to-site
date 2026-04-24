@@ -36,17 +36,15 @@ Coming soon. See **Tutorials** below as they're published.
 
 ## Tutorials
 
-The tutorial series is being written progressively:
+The tutorial series is organized as technical documentation. Read in order on first pass; return to specific tutorials as reference.
 
-1. [**Why Build Your Own Site?**](tutorials/01-why.md) — what you get vs. a faculty page *(published)*
-2. [**Designing with AI (Claude)**](tutorials/02-designing-with-ai.md) — turning rough ideas into a real layout
-3. **Tech Setup** — GitHub, Next.js, and Claude Code, explained gently
-4. **Building the Pages** — home, research, teaching, CV, contact
-5. **CV Automation** — the signature feature: one Word doc, always up to date
-6. **Deploying** — Vercel + custom domain in under an hour
-7. **Maintaining & Extending** — keeping things tidy after launch
-
-Follow this repo for updates as each section lands.
+1. [**Why Build Your Own Site?**](tutorials/01-why.md) — scope, requirements, and tradeoffs
+2. [**Designing with AI (Claude)**](tutorials/02-designing-with-ai.md) — producing a written design brief
+3. [**Tech Setup**](tutorials/03-tech-setup.md) — installing Node.js, pnpm, Git, and Claude Code
+4. [**Building the Pages**](tutorials/04-building-pages.md) — Next.js project structure and page templates
+5. [**CV Automation**](tutorials/05-cv-automation.md) — parsing a Word CV into typed data and BibTeX
+6. [**Deploying**](tutorials/06-deploying.md) — Vercel, custom domain, DNS, and redirects
+7. [**Maintaining & Extending**](tutorials/07-maintaining.md) — routine updates, dependency management, and extensions
 
 ## Workshops
 
