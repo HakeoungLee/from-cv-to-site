@@ -1,3 +1,10 @@
+---
+title: "6. Deploying"
+layout: default
+parent: Tutorials
+nav_order: 6
+---
+
 # 6. Deploying
 
 > Part 6 of the [From CV to Site](../README.md) tutorial series.

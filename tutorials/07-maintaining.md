@@ -1,3 +1,10 @@
+---
+title: "7. Maintaining & Extending"
+layout: default
+parent: Tutorials
+nav_order: 7
+---
+
 # 7. Maintaining & Extending
 
 > Part 7 of the [From CV to Site](../README.md) tutorial series.

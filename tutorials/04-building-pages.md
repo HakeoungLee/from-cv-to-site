@@ -1,3 +1,10 @@
+---
+title: "4. Building the Pages"
+layout: default
+parent: Tutorials
+nav_order: 4
+---
+
 # 4. Building the Pages
 
 > Part 4 of the [From CV to Site](../README.md) tutorial series.
@@ -10,6 +17,24 @@
 ## What this tutorial produces
 
 A working Next.js project with the standard academic site pages, running locally at `http://localhost:3000`. Deployment is covered in Tutorial 6.
+
+## Two paths through this tutorial
+
+You can follow this tutorial in one of two ways:
+
+**Option A: fork the starter.** Copy the [`starter/`](https://github.com/HakeoungLee/from-cv-to-site/tree/default/starter) directory from this repository as your starting point. All the scaffolding below is already done; you only need to replace the placeholder content. This is the fastest path and the recommended one if this is your first Next.js project.
+
+```bash
+git clone https://github.com/HakeoungLee/from-cv-to-site.git
+cp -r from-cv-to-site/starter ~/dev/my-site
+cd ~/dev/my-site
+pnpm install
+pnpm dev
+```
+
+**Option B: build from scratch.** Use the step-by-step instructions below to understand each file. Use this option if you already know Next.js and want full control, or if you want to understand what the starter contains before using it.
+
+The rest of this tutorial walks through Option B. If you chose Option A, skim to verify the project layout matches and then move to Tutorial 5.
 
 ## Site structure overview
 
@@ -270,6 +295,14 @@ pnpm dev
 ```
 
 Visit `http://localhost:3000`, `/research`, `/projects`, `/teaching`, `/people`, `/news`, and `/contact`. Resolve any broken links or type errors before proceeding.
+
+The starter renders as follows on first run (before replacing placeholder content):
+
+![Starter home page](../assets/screenshots/starter-home.png)
+
+Research and projects pages are populated from data generated in Tutorial 5:
+
+![Starter research page with sample publications](../assets/screenshots/starter-research.png)
 
 ## Committing progress
 

@@ -1,3 +1,10 @@
+---
+title: "2. Designing with AI (Claude)"
+layout: default
+parent: Tutorials
+nav_order: 2
+---
+
 # 2. Designing with AI (Claude)
 
 > Part 2 of the [From CV to Site](../README.md) tutorial series.
@@ -44,22 +51,34 @@ Choose three adjectives that describe the feel you want. Avoid generic terms suc
 
 ## Initial prompt
 
-Open a new conversation at [claude.ai](https://claude.ai). The first message should set context. Adapt the template below.
+Open a new conversation at [claude.ai](https://claude.ai). The first message should set context. Adapt the template below. The XML-like tags are not mandatory, but they help Claude keep references, anti-examples, and descriptors distinct.
 
 > I am a [professor / Ph.D. student / educator] in [your field] at [your institution]. I am building a personal academic website to share my research, teaching, and current projects. I have no formal design training, but I have specific reactions to what I see.
 >
-> Reference sites I admire:
+> \<references\>
 > - [Site 1 URL]: I like [specific detail]
 > - [Site 2 URL]: I like [specific detail]
 > - [Site 3 URL]: I like [specific detail]
+> \</references\>
 >
-> Anti-examples:
+> \<anti_examples\>
 > - [Site 4 URL]: Too [descriptor]
 > - [Site 5 URL]: Too [descriptor]
+> \</anti_examples\>
 >
-> Before discussing implementation, help me articulate a design direction. What is the common thread in the sites I admire?
+> \<descriptors\>
+> [word 1], [word 2], [word 3]
+> \</descriptors\>
+>
+> Before discussing implementation, help me articulate a design direction. Output exactly:
+>
+> 1. A three-to-five-sentence description of the common thread across the references.
+> 2. A one-sentence summary that I could quote as the design direction.
+> 3. Any tension you notice between my references, anti-examples, and descriptors.
+>
+> Do not recommend specific fonts, colors, or layouts yet.
 
-The goal of this prompt is synthesis, not generation. Claude should describe the patterns across your references, not invent a new direction.
+The goal of this prompt is synthesis, not generation. Claude should describe the patterns across your references, not invent a new direction. Constraining the output to exactly three items reduces the risk of Claude returning a long essay.
 
 ## Iterating on direction
 
@@ -76,7 +95,13 @@ Two to four rounds of iteration is typical. If you reach round six without conve
 
 Once direction is settled, request typography recommendations in a separate message.
 
-> Based on the direction we agreed on, recommend three font pairings (heading plus body). Include one serif-focused, one mono-focused, and one balanced. For each, explain when to choose it.
+> Based on the design direction we agreed on, recommend three font pairings (heading font plus body font). For each pairing:
+>
+> - Name the heading font and the body font.
+> - State whether both are available on Google Fonts (required).
+> - Describe in one sentence when to choose this pairing.
+>
+> Include one serif-led pairing, one mono-led pairing, and one balanced pairing. Keep each pairing description to three lines or fewer.
 
 Evaluate the recommendations and pick one pairing. Typography is the largest single visual decision on an academic site.
 
@@ -84,7 +109,13 @@ Evaluate the recommendations and pick one pairing. Typography is the largest sin
 
 Request a palette separately from typography.
 
-> Recommend a palette for this site: one accent color, two or three neutrals, and one link or highlight color. Keep the palette restrained. Provide hex codes and usage notes.
+> Given the design direction, recommend a color palette with exactly:
+>
+> - 1 accent color (used sparingly, for links or emphasis)
+> - 2 or 3 neutrals (backgrounds, borders, body text)
+> - 1 link color (can match the accent)
+>
+> For each color, provide a hex code and a one-sentence usage note. Restraint is a priority; the site should read as typography-led, not color-led.
 
 Restraint is appropriate for academic sites. Five or more colors typically indicates drift from the direction.
 
@@ -92,7 +123,12 @@ Restraint is appropriate for academic sites. Five or more colors typically indic
 
 Define the pages your site will have.
 
-> What sections should an academic website have? Provide a minimal version for a solo researcher and an extended version for a lab with students and multiple projects. For each section, specify what content belongs there.
+> Recommend a section structure for an academic website aligned with the design direction above. Provide:
+>
+> 1. A minimal version (4 to 5 sections) for a solo researcher.
+> 2. An extended version (6 to 8 sections) for a lab with students and multiple projects.
+>
+> For each section, list the section name and one sentence on what content belongs there. Omit any section where the content would overlap with another.
 
 ## Handling inaccurate responses
 
@@ -109,7 +145,36 @@ In all cases, you make the final decision. Claude provides options and explanati
 
 When direction, typography, color, and structure are settled, request a written summary.
 
-> Summarize the design direction as a short brief. Include: one paragraph of overall intent, typography (heading and body fonts), color palette (hex codes and usage), three to five layout principles, and three reference sites. Keep it short enough to paste at the top of future conversations.
+> Summarize everything we agreed on as a design brief. Use this exact structure, in plain Markdown:
+>
+> ```
+> # Design brief
+>
+> **Intent.** [One paragraph, 3-5 sentences.]
+>
+> **Typography.**
+> - Headings: [font name]
+> - Body: [font name]
+>
+> **Colors.**
+> - Accent: [#hex] — [usage]
+> - Neutrals: [#hex], [#hex] — [usage]
+> - Link: [#hex]
+>
+> **Layout principles.**
+> 1. [principle]
+> 2. [principle]
+> 3. [principle]
+>
+> **Sections.** [comma-separated list]
+>
+> **References.**
+> - [URL]
+> - [URL]
+> - [URL]
+> ```
+>
+> Keep the brief under 400 words so it fits cleanly at the top of future conversations.
 
 Save the response as `design-brief.md` in a notes folder. You will paste this brief into later Claude Code sessions to keep implementation consistent.
 

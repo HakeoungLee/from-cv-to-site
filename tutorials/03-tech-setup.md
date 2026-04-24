@@ -1,3 +1,10 @@
+---
+title: "3. Tech Setup"
+layout: default
+parent: Tutorials
+nav_order: 3
+---
+
 # 3. Tech Setup
 
 > Part 3 of the [From CV to Site](../README.md) tutorial series.

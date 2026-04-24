@@ -1,3 +1,10 @@
+---
+title: "1. Why Build Your Own Site?"
+layout: default
+parent: Tutorials
+nav_order: 1
+---
+
 # 1. Why Build Your Own Site?
 
 > Part 1 of the [From CV to Site](../README.md) tutorial series.

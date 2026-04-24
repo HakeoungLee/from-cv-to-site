@@ -1,0 +1,37 @@
+title: From CV to Site
+description: Open-source guide and starter for academics building a personal website with AI.
+url: https://hakeounglee.github.io
+baseurl: /from-cv-to-site
+
+remote_theme: just-the-docs/just-the-docs
+
+color_scheme: light
+search_enabled: true
+heading_anchors: true
+
+aux_links:
+  "GitHub":
+    - "https://github.com/HakeoungLee/from-cv-to-site"
+
+nav_external_links:
+  - title: Live example
+    url: https://mltilab.com
+    hide_icon: false
+
+exclude:
+  - starter/
+  - node_modules/
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
+  - "*.docx"
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

@@ -1,3 +1,9 @@
+---
+title: From CV to Site
+layout: default
+nav_order: 1
+---
+
 # From CV to Site
 
 > Build a professional academic website from your CV — designed with AI, deployed with Next.js, Vercel, and Cloudflare.
@@ -30,9 +36,27 @@ See **[MLTI Lab](https://mltilab.com)** — built using this approach.
 
 [![MLTI Lab homepage](assets/screenshot.png)](https://mltilab.com)
 
-## Quick Start
+## The starter
 
-Coming soon. See **Tutorials** below as they're published.
+The [`starter/`](starter/) directory is a working reference implementation of the stack. Fork or copy it to begin; Tutorials 3 through 7 build against it.
+
+![Starter home page rendered locally](assets/screenshots/starter-home.png)
+
+```bash
+git clone https://github.com/HakeoungLee/from-cv-to-site.git
+cp -r from-cv-to-site/starter ~/dev/my-site
+cd ~/dev/my-site
+pnpm install
+pnpm cv:sample   # write a sample CV
+pnpm cv:update   # parse it into typed data
+pnpm dev         # http://localhost:3000
+```
+
+See the [starter README](starter/README.md) for a full tour.
+
+## Quick reference
+
+See [REFERENCE.md](REFERENCE.md) for commands, file layout, entry formats, and troubleshooting at a glance.
 
 ## Tutorials
 

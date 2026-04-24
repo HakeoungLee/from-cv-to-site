@@ -1,3 +1,10 @@
+---
+title: "5. CV Automation"
+layout: default
+parent: Tutorials
+nav_order: 5
+---
+
 # 5. CV Automation
 
 > Part 5 of the [From CV to Site](../README.md) tutorial series.
@@ -14,7 +21,7 @@ The CV automation parses your Word CV and generates TypeScript data files that p
 
 Input:
 
-- `cv.docx` placed at the project root or in `content/`
+- `content/cv.docx`
 
 Output:
 
@@ -24,6 +31,33 @@ Output:
 - `src/data/talks.ts`
 - `src/data/teaching.ts`
 - `public/cv/publications.bib` (BibTeX export)
+
+The [`starter/`](https://github.com/HakeoungLee/from-cv-to-site/tree/default/starter) directory in this repository contains the full working implementation. This tutorial explains how it works and how to extend it. If you forked the starter in Tutorial 4, you already have everything below.
+
+## Fastest path: use the starter
+
+Run from your project root:
+
+```bash
+pnpm cv:sample   # writes content/cv.docx with example entries
+pnpm cv:update   # parses it and writes src/data/*.ts + public/cv/publications.bib
+pnpm dev         # verify pages render the generated data
+```
+
+Expected output:
+
+```
+[publications] wrote 3 item(s).
+[projects] wrote 2 item(s).
+[fellowships] wrote 2 item(s).
+[talks] wrote 3 item(s).
+[teaching] wrote 3 item(s).
+[bibtex] wrote 3 entries.
+
+All entries parsed successfully.
+```
+
+If this works end to end, skip ahead to Word CV formatting requirements and Handling edge cases. The code sections below explain the internals for readers who want to modify the parser.
 
 ## Supported CV sections
 
@@ -112,59 +146,26 @@ my-site/
 
 ## The parse-cv.ts script
 
-The entry point reads the CV, splits it into sections, dispatches each section to its parser, and writes the output files.
+The entry point reads the CV, splits it into sections, dispatches each section to its parser, and writes the output files. See the full implementation at [`starter/scripts/parse-cv.ts`](https://github.com/HakeoungLee/from-cv-to-site/blob/default/starter/scripts/parse-cv.ts). The relevant parts:
 
 ```ts
-// scripts/parse-cv.ts
 import mammoth from "mammoth";
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { splitBySection } from "./parsers/shared";
 import { parsePublications } from "./parsers/publications";
-import { parseProjects } from "./parsers/projects";
-import { parseFellowships } from "./parsers/fellowships";
-import { parseTalks } from "./parsers/talks";
-import { parseTeaching } from "./parsers/teaching";
-import { toTypeScript } from "./writers/typescript";
-import { toBibTeX } from "./writers/bibtex";
+// ...other parsers
 
-const CV_PATH = "content/cv.docx";
+const { value: html } = await mammoth.convertToHtml({ buffer });
+const sections = splitBySection(html);
 
-async function main() {
-  const buffer = await readFile(CV_PATH);
-  const { value: html } = await mammoth.convertToHtml({ buffer });
-
-  const sections = splitBySection(html);
-
-  const publications = parsePublications(sections.publications ?? "");
-  const projects = parseProjects(sections.projects ?? "");
-  const fellowships = parseFellowships(sections.fellowships ?? "");
-  const talks = parseTalks(sections.talks ?? "");
-  const teaching = parseTeaching(sections.teaching ?? "");
-
-  await mkdir("src/data", { recursive: true });
-  await mkdir("public/cv", { recursive: true });
-
-  await writeFile("src/data/publications.ts", toTypeScript("publications", publications));
-  await writeFile("src/data/projects.ts", toTypeScript("projects", projects));
-  await writeFile("src/data/fellowships.ts", toTypeScript("fellowships", fellowships));
-  await writeFile("src/data/talks.ts", toTypeScript("talks", talks));
-  await writeFile("src/data/teaching.ts", toTypeScript("teaching", teaching));
-  await writeFile("public/cv/publications.bib", toBibTeX(publications));
-
-  console.log(`Wrote ${publications.length} publications, ${projects.length} projects.`);
-}
-
-function splitBySection(html: string): Record<string, string> {
-  const sections: Record<string, string> = {};
-  const headingRegex = /<h[12][^>]*>(.*?)<\/h[12]>/gi;
-  // implementation: iterate headings, collect content until next heading
-  // returns a map keyed by normalized heading name
-  return sections;
-}
-
-main().catch((err) => { console.error(err); process.exit(1); });
+const { items: publications, unparsed } = parsePublications(
+  sections.publications ?? ""
+);
+// write src/data/publications.ts and public/cv/publications.bib
 ```
 
-Implement `splitBySection` to iterate through the HTML, match headings against the recognized section names, and collect the content between them.
+The `splitBySection` helper ([`starter/scripts/parsers/shared.ts`](https://github.com/HakeoungLee/from-cv-to-site/blob/default/starter/scripts/parsers/shared.ts)) iterates the `<h1>`–`<h6>` tags produced by mammoth, normalises each heading, and maps each section name to the HTML between that heading and the next. The normalization strips punctuation and case so that "Peer-Reviewed Publications" and "publications" both map to the same key.
+
+Each parser returns an object with `items` (successfully parsed entries) and `unparsed` (lines that did not match). The entry point logs the unparsed count after every run so formatting drift in the CV is visible immediately.
 
 ## Publication parser
 

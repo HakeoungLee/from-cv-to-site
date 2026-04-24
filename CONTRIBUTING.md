@@ -1,3 +1,9 @@
+---
+title: Contributing
+layout: default
+nav_order: 4
+---
+
 # Contributing to From CV to Site
 
 Thanks for being here. This project is a work-in-progress, and contributions of any kind are genuinely welcome — especially from academics who have never contributed to open source before. (That's most of us. It's fine.)
