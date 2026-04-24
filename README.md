@@ -28,7 +28,7 @@ No prior web-dev experience is assumed. If you can edit a Word document and copy
 
 See **[MLTI Lab](https://mltilab.com)** — built using this approach.
 
-<!-- Add screenshot later -->
+[![MLTI Lab homepage](assets/screenshot.png)](https://mltilab.com)
 
 ## Quick Start
 
@@ -36,10 +36,10 @@ Coming soon. See **Tutorials** below as they're published.
 
 ## Tutorials
 
-The tutorial series is being written progressively. Planned sections:
+The tutorial series is being written progressively:
 
-1. **Why Build Your Own Site?** — what you get vs. a faculty page
-2. **Designing with AI (Claude)** — turning rough ideas into a real layout
+1. [**Why Build Your Own Site?**](tutorials/01-why.md) — what you get vs. a faculty page ✅
+2. **Designing with AI (Claude)** — turning rough ideas into a real layout *(coming soon)*
 3. **Tech Setup** — GitHub, Next.js, and Claude Code, explained gently
 4. **Building the Pages** — home, research, teaching, CV, contact
 5. **CV Automation** — the signature feature: one Word doc, always up to date
@@ -65,6 +65,8 @@ This is a work-in-progress, and feedback is very welcome:
 - **Open an issue** for questions, suggestions, or things that didn't make sense
 - **Fork the repo** and share your own adaptations — seeing other academics' sites is the best part
 - **Get in touch**: [hannahlee@virginia.edu](mailto:hannahlee@virginia.edu)
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details, including how to contribute without using the terminal.
 
 ## License
 
