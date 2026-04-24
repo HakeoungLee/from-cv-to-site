@@ -15,7 +15,7 @@ permalink: /
 
 ## Who is this for?
 
-- **Faculty** building (or rebuilding) a personal website
+- **Faculty** building (or rebuilding) a personal or lab website
 - **Ph.D. students** on the job market who need a site that looks like they mean it
 - **Educators** interested in open educational resources and sharing their teaching
 - **Researchers** curious about AI-assisted design and want a hands-on project to learn with
