@@ -192,6 +192,188 @@ Before announcing the site:
 
 From the Vercel dashboard, open **Deployments**, select a previous successful deployment, and click **Promote to Production**. This reverts the live site without code changes.
 
+## Adding Vercel Analytics
+
+Vercel provides built-in analytics integrated with the deployment platform. No cookies are set, so no consent banner is required.
+
+### Installation
+
+Run from the Next.js project directory:
+
+```bash
+pnpm add @vercel/analytics
+```
+
+### Configuration
+
+Edit `src/app/layout.tsx`:
+
+```tsx
+import { Analytics } from "@vercel/analytics/next";
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  );
+}
+```
+
+### Enabling the dashboard
+
+1. Visit [vercel.com](https://vercel.com) and select the project
+2. Click the **Analytics** tab
+3. Click **Enable Analytics**
+4. Select the free plan
+
+### Commit and deploy
+
+```bash
+git add .
+git commit -m "Add Vercel Analytics"
+git push
+```
+
+Data begins collecting on the next deployment. The Vercel dashboard populates within 24 hours.
+
+### Free tier limits
+
+- 2,500 events per month
+- Web Vitals (Core Web Vitals) included
+- No retention limit for aggregated metrics
+
+### What Vercel Analytics tracks
+
+- Page views
+- Unique visitors
+- Top pages
+- Referrers
+- Countries
+- Device types
+- Operating systems and browsers
+
+## Adding Google Analytics (optional)
+
+Use Google Analytics when you need more detailed analytics or integration with Google Search Console. Google Analytics uses cookies and may require a consent banner depending on visitor jurisdiction.
+
+### Getting a Measurement ID
+
+1. Visit [analytics.google.com](https://analytics.google.com)
+2. Create an account and property
+3. Set up a web data stream for the domain
+4. Copy the Measurement ID (format: `G-XXXXXXXXXX`)
+
+### Installation
+
+```bash
+pnpm add @next/third-parties
+```
+
+### Configuration
+
+Edit `src/app/layout.tsx`:
+
+```tsx
+import { GoogleAnalytics } from "@next/third-parties/google";
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+      <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+    </html>
+  );
+}
+```
+
+Replace `G-XXXXXXXXXX` with your actual Measurement ID. For production, store the ID in an environment variable rather than hard-coding it:
+
+```tsx
+<GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
+```
+
+Set `NEXT_PUBLIC_GA_ID` in the Vercel environment variables dashboard.
+
+### Verification
+
+After deployment, real-time reports appear immediately in the Google Analytics dashboard. Aggregate reports populate within 24 to 48 hours.
+
+## Adding Google Search Console
+
+Google Search Console reports how the site appears in Google search results. It is recommended for any public-facing academic site.
+
+### Setup
+
+1. Visit [search.google.com/search-console](https://search.google.com/search-console)
+2. Add a property for the domain
+3. Verify ownership via DNS TXT record (add the record in Vercel's or Cloudflare's DNS settings)
+4. Submit the sitemap URL
+
+### Generating a sitemap
+
+Next.js generates a sitemap automatically when you define one under the App Router. Create `src/app/sitemap.ts`:
+
+```ts
+import type { MetadataRoute } from "next";
+
+const BASE_URL = "https://yourdomain.com";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const routes = ["", "/research", "/projects", "/teaching", "/news", "/contact"];
+  return routes.map((route) => ({
+    url: `${BASE_URL}${route}`,
+    lastModified: new Date(),
+  }));
+}
+```
+
+Replace `BASE_URL` with your canonical domain. The sitemap is served at `https://yourdomain.com/sitemap.xml`.
+
+Submit that URL in Search Console under **Sitemaps**.
+
+## Privacy considerations
+
+| Service | Cookies | Consent banner | Notes |
+|---|---|---|---|
+| Vercel Analytics | None | Not required | GDPR/CCPA compliant by default |
+| Google Analytics | Yes | Often required | GA4 anonymizes IPs by default |
+| Cloudflare Web Analytics | None | Not required | Free alternative to Vercel |
+| Plausible | None | Not required | Paid; hosted in the EU |
+
+For visitors in the EU, UK, or California, consider:
+
+- IP anonymization (enabled by default in GA4)
+- A consent banner (Cookiebot, CookieYes, or a custom implementation)
+- A clear privacy policy page linked in the footer
+
+## Interpreting analytics data
+
+### Metrics that matter for academic sites
+
+- **Top pages**: which research themes or outputs attract readers
+- **Referrers**: where visitors arrive from (Google Scholar, social media, institutional pages)
+- **Countries**: the international reach of your work
+- **Growth over time**: useful baseline for grant applications and annual reviews
+
+### Data for grant applications and reporting
+
+Analytics can supply concrete numbers for annual reports:
+
+- Total unique visitors over the reporting period
+- Page views, as a proxy for research dissemination
+- Geographic distribution of readers
+- Year-over-year growth percentage
+
+Treat these as supplementary evidence of public engagement, not as the primary measure of scholarly impact.
+
 ## Next tutorial
 
 [Tutorial 7: Maintaining & Extending](07-maintaining.md)

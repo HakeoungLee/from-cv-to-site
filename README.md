@@ -74,7 +74,7 @@ The tutorial series is organized as technical documentation. Read in order on fi
 3. [**Tech Setup**](tutorials/03-tech-setup.md) — installing Node.js, pnpm, Git, and Claude Code
 4. [**Building the Pages**](tutorials/04-building-pages.md) — Next.js project structure and page templates
 5. [**CV Automation**](tutorials/05-cv-automation.md) — parsing a Word CV into typed data and BibTeX
-6. [**Deploying**](tutorials/06-deploying.md) — Vercel, custom domain, DNS, and redirects
+6. [**Deploying**](tutorials/06-deploying.md) — Vercel, custom domain, DNS, redirects, and analytics
 7. [**Maintaining & Extending**](tutorials/07-maintaining.md) — routine updates, dependency management, and extensions
 
 ## Workshops
