@@ -2,6 +2,7 @@
 title: From CV to Site
 layout: default
 nav_order: 1
+permalink: /
 ---
 
 # From CV to Site
