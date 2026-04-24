@@ -71,4 +71,4 @@ But first, the next tutorial is about **design** — because a site that loads f
 
 **Next**: 2. Designing with AI (Claude) — *coming soon*
 
-[← Back to README](../README.md)
+[Back to README](../README.md)

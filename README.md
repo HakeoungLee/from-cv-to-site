@@ -8,21 +8,21 @@
 
 ## Who is this for?
 
-- 🎓 **Faculty** building (or rebuilding) a personal website
-- 📄 **Ph.D. students** on the job market who need a site that looks like they mean it
-- 📚 **Educators** interested in open educational resources and sharing their teaching
-- 🤖 **Researchers** curious about AI-assisted design and want a hands-on project to learn with
+- **Faculty** building (or rebuilding) a personal website
+- **Ph.D. students** on the job market who need a site that looks like they mean it
+- **Educators** interested in open educational resources and sharing their teaching
+- **Researchers** curious about AI-assisted design and want a hands-on project to learn with
 
 No prior web-dev experience is assumed. If you can edit a Word document and copy-paste a command, you can do this.
 
 ## Features (of the resulting site)
 
-- ✍️ **CV automation** — edit your Word CV, and publications and projects update themselves
-- 📱 **Fully responsive** — works on mobile, iPad, and desktop out of the box
-- 🖋️ **Editorial typography** — styled for academic content, not startup landing pages
-- ☁️ **Free hosting** via Vercel
-- 🌐 **Custom domain** for ~$15/year (optional, highly recommended)
-- 🧠 **Built with Claude** — AI pair-programming throughout, documented step by step
+- **CV automation** — edit your Word CV, and publications and projects update themselves
+- **Fully responsive** — works on mobile, iPad, and desktop out of the box
+- **Editorial typography** — styled for academic content, not startup landing pages
+- **Free hosting** via Vercel
+- **Custom domain** for ~$15/year (optional, highly recommended)
+- **Built with Claude** — AI pair-programming throughout, documented step by step
 
 ## Live Example
 
@@ -38,7 +38,7 @@ Coming soon. See **Tutorials** below as they're published.
 
 The tutorial series is being written progressively:
 
-1. [**Why Build Your Own Site?**](tutorials/01-why.md) — what you get vs. a faculty page ✅
+1. [**Why Build Your Own Site?**](tutorials/01-why.md) — what you get vs. a faculty page *(published)*
 2. **Designing with AI (Claude)** — turning rough ideas into a real layout *(coming soon)*
 3. **Tech Setup** — GitHub, Next.js, and Claude Code, explained gently
 4. **Building the Pages** — home, research, teaching, CV, contact
@@ -56,7 +56,7 @@ Live workshops are being planned (dates TBD). Check back here for announcements,
 
 **Hakeoung Hannah Lee** is an Assistant Professor at the University of Virginia (School of Education and Human Development). She built the MLTI Lab website while traveling between conferences, using AI tools and a lot of coffee.
 
-→ [mltilab.com](https://mltilab.com)
+Visit [mltilab.com](https://mltilab.com).
 
 ## Contributing
 
@@ -70,4 +70,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details, including how to contribute 
 
 ## License
 
-MIT — free to use, fork, and adapt. Attribution appreciated but not required.
+MIT License — you're free to use, fork, and adapt this work. Please retain the copyright notice and include the license in redistributions, as required by MIT. See the [LICENSE](LICENSE) file for details.
