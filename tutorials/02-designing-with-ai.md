@@ -91,6 +91,8 @@ Do not accept the first response. Follow up with specific questions to refine th
 
 Two to four rounds of iteration is typical. If you reach round six without convergence, your references or descriptors are likely inconsistent.
 
+Claude can also produce visual prototypes (Artifacts) that render a live HTML preview alongside the written response. Asking for an Artifact during iteration is useful when text descriptions feel ambiguous — a rendered mockup often clarifies which direction is actually wanted.
+
 ## Specifying typography
 
 Once direction is settled, request typography recommendations in a separate message.
