@@ -63,9 +63,7 @@ See [REFERENCE.md](REFERENCE.md) for commands, file layout, entry formats, and t
 
 ## Documentation site
 
-The full tutorial series is also browsable at [hakeounglee.github.io/from-cv-to-site](https://hakeounglee.github.io/from-cv-to-site/) with sidebar navigation and search.
-
-![Documentation site with sidebar navigation](assets/screenshots/docs-home.png)
+The full tutorial series is also browsable at [hakeounglee.github.io/from-cv-to-site](https://hakeounglee.github.io/from-cv-to-site/) with the same content rendered as a docs site.
 
 ## Tutorials
 
